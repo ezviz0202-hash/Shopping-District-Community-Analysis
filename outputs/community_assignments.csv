@@ -1,0 +1,21 @@
+shop_id,community,community_size,id,category,x,y,community_label
+S16,0,5,S16,leisure,78.23,15.12,C0: leisure
+S17,0,5,S17,leisure,61.95,38.47,C0: leisure
+S18,0,5,S18,leisure,88.97,34.25,C0: leisure
+S19,0,5,S19,leisure,69.14,12.93,C0: leisure
+S20,0,5,S20,leisure,80.53,23.2,C0: leisure
+S06,1,5,S06,clothing,60.62,89.1,C1: clothing
+S07,1,5,S07,clothing,84.97,66.37,C1: clothing
+S08,1,5,S08,clothing,65.45,65.5,C1: clothing
+S09,1,5,S09,clothing,69.13,75.74,C1: clothing
+S10,1,5,S10,clothing,72.96,68.74,C1: clothing
+S01,2,5,S01,food,16.24,88.52,C2: food
+S02,2,5,S02,food,26.96,77.96,C2: food
+S03,2,5,S03,food,9.68,64.68,C2: food
+S04,2,5,S04,food,6.74,85.99,C2: food
+S05,2,5,S05,food,23.03,81.24,C2: food
+S11,3,5,S11,daily,23.36,14.18,C3: daily
+S12,3,5,S12,daily,13.76,20.99,C3: daily
+S13,3,5,S13,daily,18.68,33.56,C3: daily
+S14,3,5,S14,daily,10.99,25.43,C3: daily
+S15,3,5,S15,daily,22.77,11.39,C3: daily

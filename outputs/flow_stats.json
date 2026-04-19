@@ -1,0 +1,11 @@
+{
+  "cross_community_customers": 139,
+  "total_customers": 400,
+  "cross_community_ratio": 0.347,
+  "community_visit_volume": {
+    "0": 630,
+    "1": 531,
+    "2": 566,
+    "3": 613
+  }
+}
