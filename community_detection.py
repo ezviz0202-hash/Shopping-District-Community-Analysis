@@ -1,11 +1,23 @@
-import community as community_louvain
-import networkx as nx
 import pandas as pd
+import networkx as nx
+
+try:
+    import community as community_louvain
+except ImportError:  # Fallback for environments where python-louvain is unavailable.
+    community_louvain = None
 
 
 def detect_communities(G, seed=42):
-    partition = community_louvain.best_partition(G, weight="weight", random_state=seed)
-    modularity = community_louvain.modularity(partition, G, weight="weight")
+    if community_louvain is not None:
+        partition = community_louvain.best_partition(G, weight="weight", random_state=seed)
+        modularity = community_louvain.modularity(partition, G, weight="weight")
+    else:
+        communities = nx.algorithms.community.louvain_communities(G, weight="weight", seed=seed)
+        partition = {}
+        for community_id, nodes in enumerate(communities):
+            for node in nodes:
+                partition[node] = community_id
+        modularity = nx.algorithms.community.modularity(G, communities, weight="weight")
 
     result = pd.DataFrame([
         {"shop_id": node, "community": comm}
