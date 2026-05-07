@@ -1,0 +1,56 @@
+{
+  "interpretation_note": "These metrics are proxy indicators for potential social capital connectors; they do not directly measure social capital.",
+  "global_modularity": 0.4945329004705974,
+  "top_bridge_stores": [
+    {
+      "shop_id": "S07",
+      "community": 1,
+      "betweenness_centrality": 0.14035087719298245,
+      "cross_community_edge_count": 15,
+      "cross_community_edge_weight": 93.0,
+      "community_bridge_score": 0.9333333333333332
+    },
+    {
+      "shop_id": "S01",
+      "community": 2,
+      "betweenness_centrality": 0.17543859649122806,
+      "cross_community_edge_count": 14,
+      "cross_community_edge_weight": 72.0,
+      "community_bridge_score": 0.8148148148148149
+    },
+    {
+      "shop_id": "S20",
+      "community": 0,
+      "betweenness_centrality": 0.11695906432748537,
+      "cross_community_edge_count": 12,
+      "cross_community_edge_weight": 65.0,
+      "community_bridge_score": 0.5493827160493827
+    },
+    {
+      "shop_id": "S13",
+      "community": 3,
+      "betweenness_centrality": 0.07017543859649122,
+      "cross_community_edge_count": 13,
+      "cross_community_edge_weight": 64.0,
+      "community_bridge_score": 0.5098765432098765
+    },
+    {
+      "shop_id": "S11",
+      "community": 3,
+      "betweenness_centrality": 0.038011695906432746,
+      "cross_community_edge_count": 14,
+      "cross_community_edge_weight": 63.0,
+      "community_bridge_score": 0.4981481481481482
+    }
+  ],
+  "strongest_community_pair": {
+    "community_from": 0,
+    "community_to": 1,
+    "shared_customers": 37
+  },
+  "temporal_network_evolution": {
+    "periods": 9,
+    "mean_network_density": 0.031578947368421054,
+    "mean_modularity": 0.6563755887763734
+  }
+}
