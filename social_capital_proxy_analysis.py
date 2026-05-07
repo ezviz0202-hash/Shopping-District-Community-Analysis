@@ -1,19 +1,3 @@
-"""
-Social capital proxy analysis for low-digitalized shopping districts.
-
-This module adds an interpretable, network-based extension to the original
-cross-cutting purchase behavior analysis. It does NOT claim to measure social
-capital directly. Instead, it computes transparent proxy indicators that can be
-used to identify shops that may connect otherwise separated purchasing
-communities.
-
-Main outputs:
-- shop-level bridge / hub indicators
-- community-pair flow matrix
-- temporal network evolution indicators
-- two figures for professor-update / README use
-"""
-
 from __future__ import annotations
 
 import json
@@ -33,7 +17,7 @@ PALETTE = ["#2E86AB", "#E84855", "#3BB273", "#F4A261", "#9B5DE5", "#00B4D8"]
 
 
 def _min_max_normalize(series: pd.Series) -> pd.Series:
-    """Normalize a numeric series to [0, 1]; return zeros if constant."""
+   
     values = pd.to_numeric(series, errors="coerce").fillna(0.0)
     min_v = float(values.min())
     max_v = float(values.max())
@@ -43,13 +27,7 @@ def _min_max_normalize(series: pd.Series) -> pd.Series:
 
 
 def _add_inverse_distance(G: nx.Graph) -> nx.Graph:
-    """
-    Copy a weighted co-visit graph and add an inverse-distance attribute.
-
-    In the original graph, a larger edge weight means a stronger co-visit tie.
-    NetworkX betweenness treats larger edge weights as longer distances, so we
-    use distance = 1 / weight when computing weighted betweenness.
-    """
+ 
     H = G.copy()
     for u, v, data in H.edges(data=True):
         weight = float(data.get("weight", 1.0))
@@ -61,13 +39,7 @@ def compute_community_pair_flow(
     purchase_log: pd.DataFrame,
     community_df: pd.DataFrame,
 ) -> pd.DataFrame:
-    """
-    Count customer-level cross-community co-visits.
-
-    Each customer contributes one count to every pair of communities they have
-    visited. Diagonal entries indicate customers who visited at least one shop
-    in the corresponding community.
-    """
+   
     required = {"customer_id", "shop_id"}
     if not required.issubset(purchase_log.columns):
         raise ValueError(f"purchase_log must contain columns: {sorted(required)}")
@@ -100,21 +72,7 @@ def compute_shop_bridge_indicators(
     purchase_log: pd.DataFrame,
     community_df: pd.DataFrame,
 ) -> pd.DataFrame:
-    """
-    Compute interpretable shop-level indicators for potential bridge stores.
-
-    Indicators:
-    - betweenness_centrality: weighted by inverse co-visit distance
-    - weighted_degree: total strength of co-visit relationships
-    - cross_community_edge_count: number of edges to shops in other communities
-    - cross_community_edge_weight: total co-visit strength to other communities
-    - cross_community_share: external co-visit strength / total co-visit strength
-    - community_bridge_score: equal-weight average of three normalized indicators
-      (betweenness, cross-community edge weight, cross-community edge count)
-
-    The score is intentionally simple and transparent. It is a ranking heuristic,
-    not a fitted or optimized model.
-    """
+   
     comm_lookup = community_df.set_index("shop_id")["community"].to_dict()
     label_lookup = community_df.set_index("shop_id").get("community_label", pd.Series(dtype=str)).to_dict()
 
@@ -183,12 +141,7 @@ def compute_temporal_network_evolution(
     freq: str = "W",
     min_weight: int = 3,
 ) -> pd.DataFrame:
-    """
-    Compute simple time-series network indicators by period.
-
-    This creates a lightweight proxy for social-capital evolution by observing
-    whether the purchasing network becomes denser or more fragmented over time.
-    """
+ 
     if "timestamp" not in purchase_log.columns:
         raise ValueError("purchase_log must contain a timestamp column for temporal analysis")
 
@@ -238,7 +191,7 @@ def summarize_social_capital_proxies(
     temporal_df: pd.DataFrame,
     global_modularity: Optional[float] = None,
 ) -> Dict[str, object]:
-    """Create a compact JSON-serializable summary for README / email use."""
+  
     top_bridge_stores = bridge_df.head(5)[[
         "shop_id",
         "community",
@@ -289,7 +242,7 @@ def plot_bridge_store_ranking(
     output_path: str,
     top_n: int = 8,
 ) -> None:
-    """Plot top potential bridge stores by transparent bridge score."""
+  
     top = bridge_df.head(top_n).iloc[::-1]
     colors = [PALETTE[int(c) % len(PALETTE)] for c in top["community"]]
 
@@ -321,7 +274,7 @@ def plot_social_capital_proxy_dashboard(
     temporal_df: pd.DataFrame,
     output_path: str,
 ) -> None:
-    """Create a compact dashboard for the social-capital proxy extension."""
+  
     fig, axes = plt.subplots(1, 3, figsize=(17, 5), facecolor="#F8F9FA")
     fig.suptitle("Social Capital Proxy Dashboard — Bridge Stores and Network Evolution", fontsize=13, y=1.04)
 
@@ -381,7 +334,7 @@ def run_social_capital_proxy_analysis(
     temporal_freq: str = "W",
     min_weight: int = 3,
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, Dict[str, object]]:
-    """Run the complete social-capital proxy extension and save outputs."""
+ 
     os.makedirs(output_dir, exist_ok=True)
 
     bridge_df = compute_shop_bridge_indicators(G, purchase_log, community_df)
