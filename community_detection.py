@@ -3,7 +3,7 @@ import networkx as nx
 
 try:
     import community as community_louvain
-except ImportError:  # Fallback for environments where python-louvain is unavailable.
+except ImportError: 
     community_louvain = None
 
 
