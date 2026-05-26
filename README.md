@@ -16,7 +16,7 @@ Traditional shopping district management relies on intuition and periodic survey
       ↓
 [Analysis Layer]   Cross-visit Network → Louvain Community Detection → Temporal Trend Analysis
       ↓
-[Application Layer]  Spatial Visualization + Intervention Priority Dashboard
+[Application Layer]  Spatial Visualization + Intervention Priority Dashboard + Social Capital Proxy
 ```
 
 ---
@@ -58,29 +58,51 @@ Left: Average excitement score per community. Center: Total visit volume. Right:
 
 ---
 
+### Figure 6 — Potential Bridge Stores (Social Capital Proxy Update)
+Top-ranked potential bridge stores detected from the purchasing co-visit network, ranked by community bridge proxy score combining betweenness centrality, cross-community edge count, and cross-community flow.
+
+![Bridge Store Ranking](outputs/fig6_bridge_store_ranking.png)
+
+---
+
+### Figure 7 — Social Capital Proxy Dashboard
+Bridge store ranking, community-pair customer flow matrix, and temporal network evolution summarized in a single dashboard.
+
+![Social Capital Proxy Dashboard](outputs/fig7_social_capital_proxy_dashboard.png)
+
+---
+
 ## Repository Structure
 
 ```
 shopping-district-analysis/
-├── simulator.py            # Synthetic IoT + purchase log generator
-├── network_analysis.py     # Co-visit matrix, shop network, motif stats
-├── community_detection.py  # Louvain community detection + inter-community flow
-├── excitement_analysis.py  # Excitement curve aggregation + anomaly detection
-├── visualize.py            # All figure generation
-├── main.py                 # End-to-end pipeline runner
+├── simulator.py                        # Synthetic IoT + purchase log generator
+├── network_analysis.py                 # Co-visit matrix, shop network, motif stats
+├── community_detection.py              # Louvain community detection + inter-community flow
+├── excitement_analysis.py              # Excitement curve aggregation + anomaly detection
+├── visualize.py                        # All figure generation (fig1–fig5)
+├── social_capital_proxy_analysis.py    # Social capital proxy + bridge store detection
+├── main.py                             # End-to-end pipeline runner
+├── UPDATE_SUMMARY.md                   # Social capital proxy analysis update notes
 ├── requirements.txt
-└── outputs/                # Generated figures and CSV/JSON results
+└── outputs/                            # Generated figures and CSV/JSON results
     ├── fig1_community_network.png
     ├── fig2_covisit_heatmap.png
     ├── fig3_excitement_curves.png
     ├── fig4_spatial_map.png
     ├── fig5_dashboard.png
+    ├── fig6_bridge_store_ranking.png
+    ├── fig7_social_capital_proxy_dashboard.png
     ├── purchase_log.csv
     ├── iot_data.csv
     ├── community_assignments.csv
     ├── network_stats.csv
     ├── excitement_anomalies.csv
-    └── flow_stats.json
+    ├── flow_stats.json
+    ├── social_capital_bridge_store_ranking.csv
+    ├── social_capital_community_pair_flow.csv
+    ├── social_capital_temporal_network_evolution.csv
+    └── social_capital_summary.json
 ```
 
 ---
@@ -88,8 +110,8 @@ shopping-district-analysis/
 ## Quick Start
 
 ```bash
-git clone https://github.com/<your-username>/shopping-district-analysis.git
-cd shopping-district-analysis
+git clone https://github.com/ezviz0202-hash/Shopping-District-Community-Analysis.git
+cd Shopping-District-Community-Analysis
 pip install -r requirements.txt
 python main.py
 ```
@@ -126,6 +148,9 @@ A 7-day rolling average smooths noise. Z-score anomaly detection flags unusual e
 ### 5. Intervention Dashboard
 Community-level aggregates are synthesized into an actionable dashboard: excitement rankings, visit volume, and cross-community purchasing ratio — the fraction of customers who span multiple communities and thus serve as social capital connectors.
 
+### 6. Social Capital Proxy Analysis
+A normalized community bridge proxy score is computed for each store by combining betweenness centrality, cross-community edge count, and cross-community flow. Stores with high proxy scores are identified as potential bridge/hub stores connecting different purchasing communities. See [UPDATE_SUMMARY.md](UPDATE_SUMMARY.md) for full details.
+
 ---
 
 ## Sample Output Summary
@@ -139,6 +164,8 @@ Community-level aggregates are synthesized into an actionable dashboard: excitem
 | Network modularity | 0.495 |
 | Cross-community ratio | 34.7% |
 | Excitement anomalies | 38 |
+| Top bridge store | S07 |
+| Top bridge store score | 0.933 |
 
 ---
 
