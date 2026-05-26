@@ -278,7 +278,7 @@ def plot_social_capital_proxy_dashboard(
     fig, axes = plt.subplots(1, 3, figsize=(17, 5), facecolor="#F8F9FA")
     fig.suptitle("Social Capital Proxy Dashboard — Bridge Stores and Network Evolution", fontsize=13, y=1.04)
 
-    # Panel 1: bridge score by top stores.
+   
     ax1 = axes[0]
     ax1.set_facecolor("#F8F9FA")
     top = bridge_df.head(6).iloc[::-1]
@@ -288,7 +288,7 @@ def plot_social_capital_proxy_dashboard(
     ax1.set_xlabel("Bridge score")
     ax1.grid(axis="x", alpha=0.25)
 
-    # Panel 2: community-pair flow matrix.
+  
     ax2 = axes[1]
     ax2.set_facecolor("#F8F9FA")
     im = ax2.imshow(pair_flow.values, cmap="Blues")
@@ -302,7 +302,7 @@ def plot_social_capital_proxy_dashboard(
             ax2.text(j, i, int(pair_flow.iloc[i, j]), ha="center", va="center", fontsize=8)
     fig.colorbar(im, ax=ax2, fraction=0.046, pad=0.04)
 
-    # Panel 3: temporal network evolution.
+   
     ax3 = axes[2]
     ax3.set_facecolor("#F8F9FA")
     if temporal_df.empty:
