@@ -20,12 +20,12 @@ Instead, this update provides a preliminary computational proxy analysis based o
 
 Related research directions include:
 
-a Community-based management for low-digitalized shopping districts
-b Cross-cutting purchasing behavior analysis
-c Commercial district network analysis
-d Stamp rally data and hub-store detection
-e Social capital dynamics in commercial areas
-f Data-driven intervention support for local shopping districts
+- Community-based management for low-digitalized shopping districts
+- Cross-cutting purchasing behavior analysis
+- Commercial district network analysis
+- Stamp rally data and hub-store detection
+- Social capital dynamics in commercial areas
+- Data-driven intervention support for local shopping districts
 
 This update should therefore be understood as a preliminary computational extension inspired by these research directions, rather than a direct empirical validation of social capital in a real commercial district.
 
