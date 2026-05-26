@@ -32,7 +32,7 @@ COMMUNITY_PRIORS = {
     "leisure":  [f"S{i:02d}" for i in range(16, 21)],
 }
 
-# Community-specific IoT profiles (foot traffic scale, dwell time mean, spend mean)
+
 COMMUNITY_IOT_PROFILE = {
     "food":     {"traffic_scale": 8,  "dwell_mean": 6,  "spend_mean": 1200},
     "clothing": {"traffic_scale": 5,  "dwell_mean": 14, "spend_mean": 3500},
