@@ -3,7 +3,7 @@ import pandas as pd
 
 np.random.seed(42)
 
-# Fixed spatial clusters: 4 geographic zones mimicking a real shōtengai
+
 COMMUNITY_CENTERS = {
     "food":     (20, 75),
     "clothing": (75, 75),
@@ -52,13 +52,13 @@ def generate_purchase_log(n_customers=400, n_days=60, seed=42):
         preferred = COMMUNITY_PRIORS[preference_group]
         other = [s for s in shop_ids if s not in preferred]
 
-        # Strong intra-community preference (92%), rare cross-community visits
+       
         n_visits = np.random.poisson(6)
         for _ in range(max(n_visits, 1)):
             if np.random.rand() < 0.92:
                 shop = np.random.choice(preferred)
             else:
-                # Cross-community: pick ONE adjacent community only
+                
                 adjacent_group = np.random.choice([g for g in groups if g != preference_group])
                 shop = np.random.choice(COMMUNITY_PRIORS[adjacent_group])
 
